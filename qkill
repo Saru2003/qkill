@@ -1,0 +1,27 @@
+#!/bin/bash
+if [[ $# -eq 0 ]]; then
+  echo "qkill: no matching criteria specified"
+  echo "Try 'qkill --help' for more information."
+  exit 1
+fi
+
+if [[ $1 == "--help" ]]; then
+  echo -e "Usage: \n qkill <pattern>"
+  exit 0
+fi
+
+script_name=$(basename "$0")
+pids=$(ps aux | grep "$1" | grep -v "$script_name" | grep -v "grep" | awk '{print $2}')
+if [[ -z "$pids" ]]; then
+  echo "No such processes running"
+else
+  for pid in $pids; do
+    kill -15 "$pid" 2>/dev/null
+  done
+  num_killed=$(echo "$pids" | wc -w | awk '{$1=$1};1')
+  if [ $num_killed -eq 1 ]; then
+	  echo "Successfully killed 1 process"
+  else
+    echo "Successfully killed $num_killed processes"
+  fi
+fi
