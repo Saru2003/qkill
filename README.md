@@ -33,20 +33,20 @@ sudo cp qkill /usr/local/bin
 ## Usage
 
 To terminate processes based on patterns, simply use the qkill command followed by the desired pattern.
-```
+```bash
 qkill <pattern>
 ```
 Here are some examples:
 
 To kill all instances of "vim" processes:
-```
+```bash
 qkill vim
 ```
 <img src="images/Screenshot_20230729_120739.png">
 <img src="images/Screenshot_20230729_120817.png">
 
 To terminate all processes related to "qbittorrent":
-```
+```bash
 qkill qbitt
 ```
 
